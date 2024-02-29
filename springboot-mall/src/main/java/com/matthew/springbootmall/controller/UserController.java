@@ -3,6 +3,8 @@ package com.matthew.springbootmall.controller;
 import com.matthew.springbootmall.dto.UserRegisterRequest;
 import com.matthew.springbootmall.model.User;
 import com.matthew.springbootmall.service.UserService;
+
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,7 @@ public class UserController {
 
 
     @PostMapping("/users/register")
-    public ResponseEntity<User> register(@RequestBody UserRegisterRequest userRegisterRequest){
+    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest){
         Integer userId = userService.register(userRegisterRequest);
         User user = userService.getUserById(userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);

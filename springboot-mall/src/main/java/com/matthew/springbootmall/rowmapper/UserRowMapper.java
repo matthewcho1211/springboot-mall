@@ -1,7 +1,7 @@
 package com.matthew.springbootmall.rowmapper;
 
 import com.matthew.springbootmall.model.User;
-import org.apache.tomcat.util.buf.UEncoder;
+
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
