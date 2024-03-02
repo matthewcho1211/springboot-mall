@@ -217,10 +217,8 @@ public class OrderControllerTest {
                 .get("/users/{userId}/orders", 100);
 
         mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.limit", notNullValue()))
-                .andExpect(jsonPath("$.offset", notNullValue()))
-                .andExpect(jsonPath("$.total", notNullValue()))
-                .andExpect(jsonPath("$.results", hasSize(0)));
+                .andExpect(status().is(404));
+
+
     }
 }

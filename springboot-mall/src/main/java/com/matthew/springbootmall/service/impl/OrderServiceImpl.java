@@ -40,7 +40,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrders(OrderQueryParams orderQueryParams) {
+    public List<Order> getOrders(Integer userId, OrderQueryParams orderQueryParams) {
+        User user = userDao.getUserById(userId);
+        if(user == null){
+            log.warn("該 userId {} 不存在", userId);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
         List<Order> orderList = orderDao.getOrders(orderQueryParams);
 
         for (Order order : orderList){

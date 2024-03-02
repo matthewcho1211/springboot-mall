@@ -31,7 +31,7 @@ public class OrderController {
         orderQueryParams.setOffset(offset);
 
         //取得order list
-        List<Order> orderList = orderService.getOrders(orderQueryParams);
+        List<Order> orderList = orderService.getOrders(userId, orderQueryParams);
 
         //取得order 總數
         Integer count = orderService.countOrder(orderQueryParams);
