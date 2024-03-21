@@ -39,10 +39,12 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> getOrders(OrderQueryParams orderQueryParams) {
-        String sql = "SELECT order_id, user_id, total_amount, created_date, last_modified_date FROM `order` WHERE 1=1";
+    public List<Order> getOrdersFromUser(OrderQueryParams orderQueryParams) {
+        String sql = "SELECT order_id, user_id, total_amount, created_date, last_modified_date FROM `order` WHERE user_id = :userId AND 1=1";
 
         Map<String, Object> map = new HashMap<>();
+
+        map.put("userId", orderQueryParams.getUserId());
 
         //查詢條件
         sql = addFilteringSql(sql, map, orderQueryParams);
